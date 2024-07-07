@@ -66,13 +66,13 @@ setMethod("pseudotime_heatmap",
               ht_col <- circlize::colorRamp2(c(-2, 0, 2), ht_col)
             }
 
-            time_anno <- HeatmapAnnotation(timePoint = grid_anno$time_anno,
+            time_anno <- HeatmapAnnotation(timePoint = factor(grid_anno$time_anno,levels = levels(grid_anno$time_anno)),
                                            timeline = grid_anno$time,
                                            col = list(timePoint = time_col,
                                                       timeline = col_fun),
                                            border = T)
 
-            mat <- object$ordered_matrix_list[[order]][,1:length(object@pseudotime_anno$time)]
+            mat <- object@ordered_matrix_list[[1]][[order]][,1:length(object@pseudotime_anno$time)]
 
             # whether mark your genes on plot
             if (!is.null(markGenes)) {

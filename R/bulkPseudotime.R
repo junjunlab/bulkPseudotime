@@ -67,7 +67,7 @@ bulkPseudotime <- function(expMat = NULL,
   cut_time[1] <- col_name[1]
 
   grid_anno <- data.frame(time = grid$time,time_anno = cut_time)
-
+  grid_anno$time_anno <- factor(grid_anno$time_anno,levels = colnames(expMat))
 
   # prediction method
   pseudotime.model.fun <- function(value){
