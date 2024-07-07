@@ -10,12 +10,12 @@
 #' @slot heatmap_list_group list.
 #'
 #' @export
-bulkPseudotime <- setClass("bulkPseudotime",
-                           slots = list(sample_dist_plot = "list",
-                                        sample_pca_plot = "list",
-                                        pseudotime_matrix = "data.frame",
-                                        pseudotime_matrix_long = "data.frame",
-                                        pseudotime_anno = "data.frame",
-                                        ordered_matrix_list = "list",
-                                        heatmap_list = "list",
-                                        heatmap_list_group = "list"))
+bulkPseudotimeClass <- setClass("bulkPseudotimeClass",
+                                slots = list(sample_dist_plot = "list",
+                                             sample_pca_plot = "list",
+                                             pseudotime_matrix = "data.frame",
+                                             pseudotime_matrix_long = "data.frame",
+                                             pseudotime_anno = "data.frame",
+                                             ordered_matrix_list = "list",
+                                             heatmap_list = "list",
+                                             heatmap_list_group = "list"))

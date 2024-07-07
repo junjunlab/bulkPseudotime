@@ -32,7 +32,7 @@ setGeneric("pseudotime_heatmap",function(object,order = NULL,
 #' @import methods
 #' @export
 setMethod("pseudotime_heatmap",
-          signature(object = "bulkPseudotime"),
+          signature(object = "bulkPseudotimeClass"),
           function(object = NULL,
                    order = NULL,
                    timePointCol = NULL,
@@ -149,7 +149,7 @@ setGeneric("pseudotime_line",function(object,genes = NULL,ncol = NULL,...) stand
 #' @return ggplot object
 #' @export
 setMethod("pseudotime_line",
-          signature(object = "bulkPseudotime"),
+          signature(object = "bulkPseudotimeClass"),
           function(object = NULL,
                    genes = NULL,ncol = NULL,...){
             df <- object$pseudotime_matrix_long %>%

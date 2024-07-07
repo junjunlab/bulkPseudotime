@@ -1,5 +1,6 @@
 globalVariables(c('order', 'timePointCol', 'timelineCol', 'ht_col', 'heatmap_params',
-                  'markGenes', 'fontsize', '...','genes', 'ncol',"gene","pseudotime"))
+                  'markGenes', 'fontsize', '...','genes', 'ncol',"gene","pseudotime",
+                  ".","Dim.1","Dim.2"))
 
 #' bulkPseudotime function
 #'
@@ -12,6 +13,10 @@ globalVariables(c('order', 'timePointCol', 'timelineCol', 'ht_col', 'heatmap_par
 #' @importFrom stats dist loess
 #' @import ggplot2
 #' @import utils
+#' @import FactoMineR
+#' @import modelr
+#' @importFrom tibble tibble
+#' @importFrom reshape2 melt
 #' @importFrom scales rescale
 #' @importFrom ComplexHeatmap Heatmap HeatmapAnnotation
 #' @importFrom dplyr left_join mutate filter
@@ -203,7 +208,7 @@ bulkPseudotime <- function(expMat = NULL,
   # ============================================================================
   # create homerResult object
   # ============================================================================
-  res <- methods::new("bulkPseudotime",
+  res <- methods::new("bulkPseudotimeClass",
                       sample_dist_plot = list(sample_dist_plot),
                       sample_pca_plot = list(sample_pca_plot),
                       pseudotime_matrix = results2,

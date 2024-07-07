@@ -13,8 +13,12 @@ Imports:
     circlize,
     ComplexHeatmap,
     dplyr,
+    FactoMineR,
     ggplot2,
     magrittr,
     methods,
+    modelr,
+    reshape2,
     scales,
+    tibble,
     utils
