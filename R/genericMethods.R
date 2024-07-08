@@ -152,7 +152,7 @@ setMethod("pseudotime_line",
           signature(object = "bulkPseudotimeClass"),
           function(object = NULL,
                    genes = NULL,ncol = NULL,...){
-            df <- object$pseudotime_matrix_long %>%
+            df <- object@pseudotime_matrix_long %>%
               dplyr::filter(gene %in% genes)
 
             # plot
