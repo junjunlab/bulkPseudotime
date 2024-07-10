@@ -7,6 +7,8 @@ globalVariables(c('order', 'timePointCol', 'timelineCol', 'ht_col', 'heatmap_par
 #' @param expMat Expression matrix(tpm/fpkm data) for bulk RNA-seq.
 #' @param timePointCol the color for timePointCol.
 #' @param timelineCol the color for timelineCol.
+#' @param window window size to produce predicted expression, large size needs more time,
+#' default 100.
 #'
 #' @return bulkPseudotime object
 #'
@@ -24,7 +26,13 @@ globalVariables(c('order', 'timePointCol', 'timelineCol', 'ht_col', 'heatmap_par
 #' @export
 bulkPseudotime <- function(expMat = NULL,
                            timePointCol = NULL,
-                           timelineCol = NULL){
+                           timelineCol = NULL,
+                           window = 100){
+  # ==============================================================================
+  # 0.filter genes with expression
+  # ==============================================================================
+  expMat <- expMat[rowSums(expMat) > 0,]
+
   # ==============================================================================
   # 1.get the timeline
   # ==============================================================================
@@ -59,7 +67,7 @@ bulkPseudotime <- function(expMat = NULL,
   names(tpm.z) <- names(expMat)
 
   # produce continues point
-  grid <- data.frame(time = seq(0,10,length.out = 100*ncol(expMat)))
+  grid <- data.frame(time = seq(0,10,length.out = window*ncol(expMat)))
 
   # make time point annotations according to colnames
   col_name <- colnames(expMat)
@@ -178,7 +186,7 @@ bulkPseudotime <- function(expMat = NULL,
 
   # loop for puduce heatmap
   lapply(1:4,function(x){
-    ht <- Heatmap(matrix = order_list[[x]][,1:(100*ncol(expMat))],
+    ht <- Heatmap(matrix = order_list[[x]][,1:(window*ncol(expMat))],
                   name = "zscore",
                   border = T,
                   top_annotation = time_anno,

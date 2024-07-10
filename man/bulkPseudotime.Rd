@@ -4,7 +4,12 @@
 \alias{bulkPseudotime}
 \title{bulkPseudotime function}
 \usage{
-bulkPseudotime(expMat = NULL, timePointCol = NULL, timelineCol = NULL)
+bulkPseudotime(
+  expMat = NULL,
+  timePointCol = NULL,
+  timelineCol = NULL,
+  window = 100
+)
 }
 \arguments{
 \item{expMat}{Expression matrix(tpm/fpkm data) for bulk RNA-seq.}
@@ -12,6 +17,9 @@ bulkPseudotime(expMat = NULL, timePointCol = NULL, timelineCol = NULL)
 \item{timePointCol}{the color for timePointCol.}
 
 \item{timelineCol}{the color for timelineCol.}
+
+\item{window}{window size to produce predicted expression, large size needs more time,
+default 100.}
 }
 \value{
 bulkPseudotime object
